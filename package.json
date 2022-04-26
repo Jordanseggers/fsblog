@@ -7,24 +7,24 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.4",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongoose": "^6.0.12",
     "mongoose-unique-validator": "^3.0.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "node index.js",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --verbose",
     "eject": "react-scripts eject",
     "dev": "nodemon index.js",
-    "lint": "esling ."
+    "lint": "eslint ."
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +46,10 @@
   },
   "devDependencies": {
     "eslint": "^8.1.0",
+    "jest": "^28.0.1",
     "nodemon": "^2.0.14"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
