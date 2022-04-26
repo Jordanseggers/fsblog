@@ -1,7 +1,8 @@
 const http = require('http')
-const config = require('./utils/config')
 const express = require('express')
 const app = express()
+const config = require('./utils/config')
+const logger = require('./utils/logger')
 const cors = require('cors')
 const mongoose = require('mongoose')
 
@@ -14,7 +15,6 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 
-//const mongoUrl = 'mongodb+srv://mongoTrain:training@cluster0.r1xpz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'//// change
 mongoose.connect(config.MONGODB_URI)
 
 app.use(cors())
@@ -38,7 +38,6 @@ app.post('/api/blogs', (request, response) => {
     })
 })
 
-//const PORT = 3003
 app.listen(config.PORT, () => {
-  console.log(`Server running on port ${config.PORT}`)
+  logger.info(`Server running on port ${config.PORT}`)
 })
