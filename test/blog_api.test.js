@@ -14,7 +14,7 @@ beforeEach(async () => {
   await Promise.all(promiseArray)
 })
 
-describe('testing the API stuff:', () => {
+describe('when there are initially some blogs saved', () => {
   test('blogs are in JSON format', async () => {
     await api
       .get('/api/blogs')
@@ -27,6 +27,26 @@ describe('testing the API stuff:', () => {
       .get('/api/blogs')
 
     expect(response.body).toHaveLength(helper.initialBlogs.length)
+  }, 200000)  
+})
+
+describe('addition of a new blog', () => {
+  test('succeeds with valid data', async () => {
+    const newBlog = {
+      title: "new blog right here",
+      author: "Michael Chan",
+      url: "https://reactpatterns.com/",
+      likes: 7,
+    }
+
+    await api
+      .post('/api/blogs')
+      .send(newBlog)
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+    const blogsAtEnd = await helper.blogsInDb()
+    expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
   })
 })
 
